@@ -1,0 +1,19 @@
+spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    initialization-mode: always
+    url: jdbc:mysql://localhost:3306/studentdb
+    username: root
+    password: 123456
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+server:
+  port: 8192

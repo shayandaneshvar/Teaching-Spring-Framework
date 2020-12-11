@@ -14,6 +14,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>data-jpa-demo</name>
     <description>Demo project for Spring Boot</description>
+    <packaging>war</packaging>
 
     <properties>
         <java.version>11</java.version>

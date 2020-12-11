@@ -8,6 +8,7 @@ import com.mapsa.datajpademo.exceptions.NotFoundException;
 import com.mapsa.datajpademo.repo.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,24 +19,38 @@ public class BookService {
     private BookToBookDto bookConverter;
     private BookDtoToBook bookDtoConverter;
     private BookMapper bookMapper;
+//    private SessionFactory sessionFactory;
 
     @Autowired
     public BookService(BookRepository bookRepository,
                        BookToBookDto bookConverter,
-                       BookDtoToBook bookDtoConverter, BookMapper bookMapper) {
+                       BookDtoToBook bookDtoConverter, BookMapper bookMapper
+            /*, SessionFactory sessionFactory*/) {
+//        this.sessionFactory = sessionFactory;
         this.bookMapper = bookMapper;
         this.bookDtoConverter = bookDtoConverter;
         this.bookConverter = bookConverter;
         this.bookRepository = bookRepository;
     }
 
-
+    @Transactional()
     public List<BookDto> readAllBooks() {
-        return bookRepository.findAll()
+//        Session session = sessionFactory.getCurrentSession().getSession();
+//        Transaction transaction = session.getTransaction();
+        List<BookDto> list = null;
+//        try {
+//            transaction.begin();
+        list = bookRepository.findAll()
                 .stream()
 //                .map(bookConverter::convert)
                 .map(bookMapper::bookToDto)
                 .collect(Collectors.toList());
+//            transaction.commit();
+//        } catch (Exception e) {
+//            transaction.rollback();
+//        }
+        return list;
+
     }
 
     public BookDto createBook(BookDto bookDto) {
