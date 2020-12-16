@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  postgres_database:
+    image: postgres:9.6.19
+    restart: always
+    networks:
+      - docker-demo-network
+    ports:
+      - "54325:5432"
+    environment:
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_DB:       "my_db"
+  commment-app:
+    image: demo-docker-java:v1
+    networks:
+      - docker-demo-network
+    ports:
+      - "18888:8192"
+    environment:
+      DB_LOCATION: "postgres_database"
+      DB_PORT: "5432"
+    depends_on:
+      - postgres_database
+
+networks:
+  docker-demo-network:
+
