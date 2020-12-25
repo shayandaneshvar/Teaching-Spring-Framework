@@ -1,0 +1,35 @@
+server:
+  port: 8192
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+  session:
+    jdbc:
+      initialize-schema: embedded #always
+      table-name: SPRING_SESSION
+    store-type: jdbc
+
+  mail:
+    host: smtp.gmail.com
+    username: mapsajava@gmail.com
+    password: mapsa@java2020
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: #?
+            client-secret: #?

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Users</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container my-5">
+
+<!--    <div class="row" th:switch="${userList}">-->
+    <div class="row">
+        <div class="col-md-6">
+
+            <h2 th:if="${#lists.isEmpty(userList)}">No users yet!</h2>
+<!--            <h2 th:case="null">No users yet!</h2>-->
+
+            <div th:unless="${#lists.isEmpty(userList)}">
+<!--            <div th:case="*">-->
+                <h2 class="my-5" >Users</h2>
+                <table class="table table-striped table-responsive-md">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th sec:authorize="hasAuthority('ADMIN')">Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="user : ${userList}">
+                        <td th:text="${user.name}">John</td>
+                        <td th:text="${user.email}">Doe</td>
+                        <td sec:authorize="hasAuthority('ADMIN')"><a class="btn btn-primary" th:href="@{/delete/{id}(id=${user.id})}"><i
+                                class="fas fa-user-times ml-2"></i></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="my-5"><a href="#" th:href="@{/register}" class="btn btn-primary"><i
+                    class="fas fa-user-plus ml-2"></i></a></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
