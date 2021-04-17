@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Interpreter</title>
+</head>
+<style>
+    button {
+        padding: 1rem 2rem;
+        background: darkorange;
+    }
+</style>
+<body style="background-color: cornflowerblue">
+<h1 style="color: darkorange">Online JavaScript Interpreter</h1>
+<form action="./compile" method="post">
+    <label for="text-box" style="display: block">Enter Your Code Here:</label>
+<!--    <br>-->
+    <textarea name="code" id="text-box" cols="150%" rows="30%"
+              style="float: bottom"></textarea>
+    <br>
+    <button type="submit">Run!</button>
+    <button type="reset">Reset</button>
+</form>
+</body>
+</html>

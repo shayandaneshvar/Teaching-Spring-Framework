@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+    <context:annotation-config/>
+    <context:component-scan
+            base-package="ir.shayandaneshvar.i18n_spring_core_bean"/>
+    <bean name="myStudent"
+          class="ir.shayandaneshvar.i18n_spring_core_bean.Student">
+        <constructor-arg value="20" name="age" index="1"/>
+        <constructor-arg value="ali" name="name" index="0"
+                         type="java.lang.String"/>
+        <property name="id" value="1000"/>
+        <property name="address" ref="myAddress"/>
+    </bean>
+
+    <bean name="myAddress"
+          class="ir.shayandaneshvar.i18n_spring_core_bean.Address">
+        <constructor-arg value="Tehran" name="city"/>
+        <constructor-arg value="Iran" name="country"/>
+    </bean>
+    <bean id="a" class="ir.shayandaneshvar.i18n_spring_core_bean.A"/>
+    <bean id="b" class="ir.shayandaneshvar.i18n_spring_core_bean.B"
+          autowire="constructor"/>
+</beans>
